@@ -66,3 +66,9 @@ We need to ensure that it pass all the different tests and the pull request shou
 You can find github workflow triggers [Here](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows).
 
 You can visit the [Github Marketplace](https://github.com/marketplace) to find pre-written scripts and more.
+
+## Running Workflows
+
+Here we have created a workflow that will run only when we are creating a pull request.
+
+We can create a branch and make a pull request to check if the workflow is working.
