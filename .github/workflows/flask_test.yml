@@ -15,9 +15,10 @@ jobs:
   test:
     # We need to specify the runs-on key to specify the operating system
     # We can run on one or more operating systems at the same time
-    # Here we are running on ubuntu, windows and mac
-    runs-on: [ubuntu-latest, windows-latest, macos-latest]
+    # runs-on: [ubuntu-latest, windows-latest, macos-latest]
     # Specifying defaults for the run command
+    # Here we are only running on ubuntu-latest
+    runs-on: ubuntu-latest
     defaults:
       run:
         # We need to find the working directory while running different scripts
@@ -29,7 +30,7 @@ jobs:
       # By having a matrix we can run the same job on different versions of python
       matrix:
         # List of python versions
-        python-version: [3.6, 3.7, 3.8, 3.9]
+        python-version: [3.8, 3.9]
 
     # We can use environment variables to pass in values to the job
     env:
