@@ -35,9 +35,10 @@ jobs:
     # We can use environment variables to pass in values to the job
     env:
       # We can specify environment variables this.
-      MODE: "dev"
+      # MODE: "dev"
       # Alternatively we can use github secrets to store sensitive information
       # This will give a encrypted environment variable
+      MODE: ${{ secrets.MODE }}
 
     # Next we need to define the steps that should be run the job in the workflow
     steps:

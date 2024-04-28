@@ -72,3 +72,33 @@ You can visit the [Github Marketplace](https://github.com/marketplace) to find p
 Here we have created a workflow that will run only when we try to create a pull request.
 
 We can create a new branch and make a pull request to check if the workflow is running correctly.
+
+## Using Github Secrets
+
+We are removing the .env file from github because it may contain vulnerable information line API keys, Database passwords etc.
+
+When we are running workflows we need to we need to use those environment variables too. We can't just hard code it because we will be exposing them to the public.
+
+```sh
+env:
+  MODE: "dev"
+```
+
+In those cases, we can use **github secrets**.
+
+> [!NOTE]
+> This is just like an environment variable, except it will be encrypted by github and only be visible to and edited by an administrator of the repository.
+
+**Steps:**
+
+1. Go to settings of the repository.
+2. Go to `Environments` section and setup an environment.
+   - Here are are naming the new environment as `dev`
+3. Inside `dev` there is a `Environment Secrets` section where we can add those environment variables. (Name and Value)
+
+Now , you can use the secret as an environment variable in the workflow.
+
+```sh
+env:
+  MODE: ${{ secrets.MODE }}
+```
