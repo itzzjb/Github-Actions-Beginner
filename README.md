@@ -69,6 +69,6 @@ You can visit the [Github Marketplace](https://github.com/marketplace) to find p
 
 ## Running Workflows
 
-Here we have created a workflow that will run only when we are creating a pull request.
+Here we have created a workflow that will run only when we try to create a pull request.
 
 We can create a branch and make a pull request to check if the workflow is working.
