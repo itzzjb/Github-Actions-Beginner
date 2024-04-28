@@ -1,0 +1,69 @@
+# First we want to give a name
+name: Flask App Test
+
+# Next we want to define when this workflow should run
+on:
+  pull_request:
+    branches:
+      - main
+# This specifies that the workflow should run when a pull request is made to the main branch
+
+# Next we want to define the jobs that should be run
+# There are jobs like build, test, deploy etc
+# We can specify multiple jobs in the workflow
+jobs:
+  test:
+    # We need to specify the runs-on key to specify the operating system
+    # We can run on one or more operating systems at the same time
+    # Here we are running on ubuntu, windows and mac
+    runs-on: [ubuntu-latest, windows-latest, macos-latest]
+    # Specifying defaults for the run command
+    defaults:
+      run:
+        # We need to find the working directory while running different scripts
+        working-directory: ./app/
+
+    # Next we need to define the different versions of python we want to test our app on
+    # You can do this with npm as well when you are working with node.js
+    strategy:
+      # By having a matrix we can run the same job on different versions of python
+      matrix:
+        # List of python versions
+        python-version: [3.6, 3.7, 3.8, 3.9]
+
+    # We can use environment variables to pass in values to the job
+    env:
+      # We can specify environment variables this.
+      MODE: "dev"
+      # Alternatively we can use github secrets to store sensitive information
+      # This will give a encrypted environment variable
+
+    # Next we need to define the steps that should be run the job in the workflow
+    steps:
+      # This is a pre-made script provided by github that automatically sets up the running environment for us
+      # Similarly we can use pre-written scripts in the github marketplace
+      - uses: actions/checkout@v3
+
+      # Next we need to set up python
+      - name: Set up Python
+        # This will setup the python environment for us on whatever environment we are running on
+        uses: actions/setup-python@v4
+        # We can pass in the versions of python we want to use that we specified in the matrix
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # Next we need to install the dependencies
+      - name: Install dependencies
+        # Here we are writing a custom script by ourselves
+        # This will install the dependencies for us
+        run:
+          # Upgrading pip and installing the dependencies specified in the requirements.txt file
+          python -m pip install --upgrade pip
+          pip install -r ../requirements.txt
+
+        # Next we need to run the tests
+      - name: Test App Code
+        run:
+          python ./main_test.py
+          # If any of these test fail workflow will fail and it will not allow to merge the pull request
+          # If all the tests pass then the workflow will pass and the pull request can be merged when you got approval from reviewers
