@@ -34,7 +34,7 @@ For more information we can refer to [Github Actions Website](https://github.com
 - We can build, test, and deploy applications in a language of choice because github actions supports any language.
 
 > [!NOTE]
-> Mainly github actions is used every day to automatically the do the testing and making sure we don't put code that are potentially broken or doesn't pass any test to a main branch or production branch.
+> Mostly github actions is used every day to automatically the do the testing and making sure we don't put code that are potentially broken or doesn't pass any test to a main branch or production branch.
 
 **Created a basic flask application and unit tests for it.**
 
@@ -51,9 +51,6 @@ By adding this, we can make the repository as no one is able to push directly to
 Main / Master branch should be always clean and fully functioning. So, you don't want to accidentally push something to the main branch when working with multiple people.
 
 We need to ensure that it pass all the different tests and the pull request should be approved in order to merge into the main / master branch.
-
-> [!IMPORTANT]
-> Make sure to
 
 ## Setting up a github workflow
 
