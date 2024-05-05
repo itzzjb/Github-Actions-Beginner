@@ -76,7 +76,7 @@ We are removing the .env file from github because it may contain vulnerable info
 
 When we are running workflows we need to we need to use those environment variables too. We can't just hard code it because we will be exposing them to the public.
 
-```sh
+```yml
 env:
   MODE: "dev"
 ```
@@ -95,7 +95,7 @@ In those cases, we can use **github secrets**.
 
 Now , you can use the secret as an environment variable in the workflow.
 
-```sh
+```yml
 env:
   MODE: ${{ secrets.MODE }}
 ```
